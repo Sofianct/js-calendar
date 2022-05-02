@@ -1,18 +1,9 @@
 /* TYPOS */
-
-@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,700;1,400&display=swap');
-
-/* font-family: 'Nunito', sans-serif; */
-
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+/* font-family: 'Inter', sans-serif; */
 
 /* COMMON */
-@import "./reset.css";
-@import "./common.css";
 @import "./calendar.css";
 
-/* MODALS */
-@import "./modal.css";
-
-/* OTHER */
-@import "./warningbox.css";
-@import "./aside.css";
+/* MODALS
+@import "./modal.css"; */
