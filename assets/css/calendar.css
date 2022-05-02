@@ -22,8 +22,11 @@ html, body {
     font-family: 'Inter', sans-serif;
 }
 .calendar__weekdays{
-    display: flex;
-}
+    display: grid;
+grid-template-columns: repeat(7, 1fr);
+padding: 1em 3em;
+text-align: center;
+font-size: 1em;}
 .days{
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -32,4 +35,8 @@ html, body {
     grid-row-gap: 5px;
     padding: 2em 3em;
     text-align: center;
+}
+.header__buttons{
+    display: flex;
+    justify-content: center;
 }
