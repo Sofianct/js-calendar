@@ -62,4 +62,7 @@ button{
 }
 .btn.prev-btn, .btn.next-btn {
     margin: 0em 5em;}
-
+.selected-day{
+    background-color: var(--selected-day);
+    border-radius: 12px;
+}
