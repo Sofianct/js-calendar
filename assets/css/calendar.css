@@ -11,7 +11,7 @@ html, body {
 /*--------------*/
 :root{
     --back-color: #1F1F1F;
-    --font-color: #CCCCCC;
+    --font-color: #ffffff;
     --selected-day: #589C5F;
     --modal-color: #363434;
     --input-color: #525252;
@@ -26,7 +26,10 @@ html, body {
         grid-template-columns: repeat(7, 1fr);
         padding: 1em 0em;
         font-size: 1em;
+        font-weight:bold;
+        color:white;
 }
+
 .header__buttons{
     display: flex;
     justify-content: center;
@@ -51,7 +54,12 @@ button{
 .header__buttons{
     display: flex;
     justify-content: center;
+    color: white;
+    
 }
 .fa-solid{
-    cursor: pointer;
+    cursor: pointer; 
 }
+.btn.prev-btn, .btn.next-btn {
+    margin: 0em 5em;}
+
