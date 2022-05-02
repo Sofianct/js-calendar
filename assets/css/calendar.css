@@ -21,3 +21,15 @@ html, body {
     color: var(--font-color);
     font-family: 'Inter', sans-serif;
 }
+.calendar__weekdays{
+    display: flex;
+}
+.days{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: 1fr repeat(5, 1fr);
+    grid-column-gap: 5px;
+    grid-row-gap: 5px;
+    padding: 2em 3em;
+    text-align: center;
+}
