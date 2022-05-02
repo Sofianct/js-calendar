@@ -22,7 +22,20 @@ html, body {
     font-family: 'Inter', sans-serif;
 }
 .calendar__weekdays{
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 1em 3em;
+    text-align: center;
+    font-size: 1em;
+}
+.header__buttons{
     display: flex;
+    justify-content: center;
+}
+button{
+    text-align: center;
+    text-decoration: none;
+    border: none;
 }
 .days{
     display: grid;
@@ -30,6 +43,13 @@ html, body {
     grid-template-rows: 1fr repeat(5, 1fr);
     grid-column-gap: 5px;
     grid-row-gap: 5px;
-    padding: 2em 3em;
+}
+.day{
+    height: 2.5rem;
+    width: 1rem;
     text-align: center;
+}
+.header__buttons{
+    display: flex;
+    justify-content: center;
 }
