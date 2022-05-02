@@ -1,2 +1,5 @@
-/*  All imports (example) */
-//import { name of BASE FUNCTIONS } from "./pagename.js";
+/* IMPORT */
+import {  } from ".modal";
+import {  } from ".calendar";
+
+/* INVOKING BASE FUNCTIONS ON LOAD PAGE */  EXAMPLE

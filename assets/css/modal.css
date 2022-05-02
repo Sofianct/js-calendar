@@ -1,0 +1,139 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (min-width: 1024px) and (orientation: landscape) {
+    .calendar__weekdays {
+      background-color: var(--type-1);
+      color: white;
+      border-radius: 5px;
+      font-weight: bold;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      flex-shrink: 0;
+      flex-grow: 1;
+      flex-basis: auto;
+    }
+    .calendar__weekdays > div {
+      text-align: center;
+      flex-shrink: 0;
+      flex-grow: 1;
+      flex-basis: auto;
+    }
+    #daysMonth {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0px 0px;
+      flex-shrink: 0;
+      flex-grow: 1;
+      flex-basis: auto;
+    }
+    .day__month {
+      position: relative;
+      color: var(--primary-color);
+      text-align: right;
+      border: solid 1px;
+      border-color: var(--third-color);
+      border-collapse: collapse;
+      padding: 0.3rem;
+      transition: 0.4s;
+      flex-shrink: 0;
+      flex-grow: 1;
+      min-height: 7rem;
+      max-width: 7rem;
+    }
+    .btn:hover {
+      color: var(--type-1);
+      background-color: var(--fourth-color);
+    }
+    .day__month:hover {
+      border: solid 1px var(--secondary-color);
+    }
+    .day__btn--add:hover {
+      color: var(--type-1);
+      background-color: var(--fourth-color);
+    }
+    .day__month:hover .day__btn--add,
+    .day__btn--add:focus {
+      opacity: 1;
+    }
+    .day__event-container:hover .day__event-title.meeting {
+      background-color: var(--third-color);
+    }
+    .day__event-container:hover .day__event-title.personal {
+      background-color: var(--third-color);
+    }
+    .day__event-container:hover .day__event-title.study {
+      background-color: var(--third-color);
+    }
+    .day__event-container:hover .day__event-title.others {
+      background-color: var(--third-color);
+    }
+    .day__event-container:hover .day__event-title,
+    .more-events {
+      background-color: var(--third-color);
+      cursor: pointer;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      color: var(--primary-color);
+    }
+  }
+  
+  /* hide .day__btn--add if day__month is not hovered */
+  
+  @media (min-width: 320px) and (max-width: 1023px) {
+    .header {
+      background-color: white;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+      padding: 1rem;
+      z-index: 999;
+    }
+    .calendar__weekdays {
+      display: hidden;
+    }
+    .calendar__weekdays > div {
+      display: hidden;
+      font-size: 0;
+    }
+    #daysMonth {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 0px 0px;
+      flex-shrink: 0;
+      flex-grow: 1;
+      flex-basis: auto;
+    }
+    .day__month {
+      border: solid 1px var(--third-color);
+      border-collapse: collapse;
+    }
+  }
