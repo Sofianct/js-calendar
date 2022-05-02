@@ -8,3 +8,16 @@
 html, body {
     height: 100%;
 }
+/*--------------*/
+:root{
+    --back-color: #1F1F1F;
+    --font-color: #CCCCCC;
+    --selected-day: #589C5F;
+    --modal-color: #363434;
+    --input-color: #525252;
+}
+*{
+    background-color: var(--back-color);
+    color: var(--font-color);
+    font-family: 'Inter', sans-serif;
+}
