@@ -53,3 +53,6 @@ button{
     display: flex;
     justify-content: center;
 }
+.fa-solid{
+    cursor: pointer;
+}
