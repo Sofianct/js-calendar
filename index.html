@@ -6,9 +6,7 @@
     <title>Calendar Js</title>
     <link rel="icon" href="./src/assets/1.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script
-      src="https://kit.fontawesome.com/0121341235.js"
-      crossorigin="anonymous"
+    <script src="https://kit.fontawesome.com/0121341235.js" crossorigin="anonymous"
     ></script>
     <link
       rel="stylesheet"
@@ -29,15 +27,15 @@
             <header class="header">
                 <h1>JS CALENDAR</h1>
                 <div class="header__buttons">
-                    <button class="btn prev-btn" id="prev-btn"><i class="fa-solid fa-xl fa-chevron-left"></i></button>
-                    <h2 class="header__date-title" id="calendar-title">MAY 2022</h2>
+                    <button class="btn prev-btn" id="backButton"><i class="fa-solid fa-xl fa-chevron-left"></i></button>
+                    <h2 class="header__date-title" id="monthDisplay"></h2>
                      <button class="btn plus-btn" id="plus-btn"><i class="fa-solid fa-xl fa-circle-plus"></i></button>
-                     <button class="btn next-btn" id="next-btn"><i class="fa-solid fa-xl fa-chevron-right"></i></button>
+                     <button class="btn next-btn" id="nextButton"><i class="fa-solid fa-xl fa-chevron-right"></i></button>
                    
                 </div>
             </header>
             <section class="calendar">
-                <div class="calendar__weekdays">
+                <div id="weekdays" class="calendar__weekdays">
                     <div>Mo</div>
                     <div>Tu</div>
                     <div>We</div>
@@ -46,7 +44,7 @@
                     <div>Sa</div>
                     <div>Su</div>
                 </div>
-                <div id="monthDays" class="days">
+                <div id="calendar" class="days">
                     <div class="day">1</div>
                     <div class="day">2</div>
                     <div class="day">3</div>
@@ -80,6 +78,25 @@
                 </div>
             </section>
         </article>
+        <div id="newEventModal">
+            <h2>New Event</h2>
+      
+            <input id="eventTitleInput" placeholder="Event Title"/>
+      
+            <button id="saveButton">Save</button>
+            <button id="cancelButton">Cancel</button>
+          </div>
+      
+          <div id="deleteEventModal">
+            <h2>Event</h2>
+      
+            <p id="eventText"></p>
+      
+            <button id="deleteButton">Delete</button>
+            <button id="closeButton">Close</button>
+          </div>
+      
+          <div id="modalBackDrop"></div>
     </main>
   </body>
 </html>

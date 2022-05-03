@@ -55,7 +55,6 @@ button{
 .calendar__weekdays div{
     width: 100px;
     padding: 10px;
-    border: white 1px solid;
 }
 .days{
     display: grid;
@@ -74,7 +73,7 @@ button{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: white 1px solid;
+    border: rgb(82, 82, 82) 1px solid;
 }
 /*---------------------------------------*/
 .header__buttons{
@@ -100,7 +99,7 @@ button{
 /*---------------------------------------*/
 .padding {
     cursor: default !important;
-    background-color: #FFFCFF !important;
+    background-color: var(--back-color) !important;
     box-shadow: none !important;
 }
 #newEventModal, #deleteEventModal {
