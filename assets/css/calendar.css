@@ -21,13 +21,10 @@ html, body {
     color: var(--font-color);
     font-family: 'Inter', sans-serif;
 }
-.calendar__weekdays{
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        padding: 1em 0em;
-        font-size: 1em;
-        font-weight:bold;
-        color:white;
+h1{
+    text-align: center;
+    font-size: 2rem;
+    margin: 2rem;
 }
 .header__buttons{
     display: flex;
@@ -37,9 +34,28 @@ button{
     text-align: center;
     text-decoration: none;
     border: none;
+    cursor: pointer; 
 }
+/*------------↓↓↓ TO FIX ↓↓↓-------------*/
 .calendar{
-    width: 50vw;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10rem;
+}
+.calendar__weekdays{
+    width: 100%;
+    display: flex;
+    font-size: 1em;
+    font-weight:bold;
+    color:var(--font-color);
+    margin: 0.31rem;
+}
+.calendar__weekdays div{
+    width: 100px;
+    padding: 10px;
+    border: white 1px solid;
 }
 .days{
     display: grid;
@@ -49,19 +65,26 @@ button{
     grid-row-gap: 5px;
 }
 .day{
-    height: 2.5rem;
-    width: 1rem;
-    text-align: center;
-    
+    width: 5.25rem;
+    padding: 0.625rem;
+    height: 6.25rem;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 0.31rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: white 1px solid;
 }
+/*---------------------------------------*/
 .header__buttons{
     display: flex;
     justify-content: center;
     color: white;
-    
 }
-.fa-solid{
-    cursor: pointer; 
+.header__date-title{
+    font-size: 1.8rem;
+    font-weight: 500;
 }
 .btn.prev-btn, .btn.next-btn {
     margin: 0em 5em;
@@ -70,6 +93,58 @@ button{
     background-color: var(--selected-day);
     border-radius: 31px;
     width: 40px;
-    padding: 9px;
-    margin: -8px;
+}
+.hidden{
+    display: none;
+}
+/*---------------------------------------*/
+.padding {
+    cursor: default !important;
+    background-color: #FFFCFF !important;
+    box-shadow: none !important;
+}
+#newEventModal, #deleteEventModal {
+    display: none;
+    z-index: 20;
+    padding: 25px;
+    background-color: #e8f4fa;
+    box-shadow: 0px 0px 3px black;
+    border-radius: 5px;
+    width: 350px;
+    top: 100px;
+    left: calc(50% - 175px);
+    position: absolute;
+    font-family: sans-serif;
+}
+#eventTitleInput {
+    padding: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 25px;
+    border-radius: 3px;
+    outline: none;
+    border: none;
+    box-shadow: 0px 0px 3px gray;
+}
+#eventTitleInput.error {
+    border: 2px solid red;
+}
+#cancelButton, #deleteButton {
+    background-color: #d36c6c;
+}
+#saveButton, #closeButton {
+    background-color: #92a1d1;
+}
+#eventText {
+    font-size: 14px;
+}
+#modalBackDrop {
+    display: none;
+    top: 0px;
+    left: 0px;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background-color: rgba(0,0,0,0.8);
 }
