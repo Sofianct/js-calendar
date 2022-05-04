@@ -42,7 +42,7 @@ button{
     margin: auto;
     display: flex;
     flex-wrap: wrap;
-    margin-left: 10rem;
+    justify-content: center;
 }
 .calendar__weekdays{
     width: 100%;
@@ -51,6 +51,7 @@ button{
     font-weight:bold;
     color:var(--font-color);
     margin: 0.31rem;
+    justify-content: center;
 }
 .calendar__weekdays div{
     width: 100px;
