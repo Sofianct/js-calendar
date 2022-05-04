@@ -1,5 +1,6 @@
 /*  All imports (example) */
 //import { name of BASE FUNCTIONS } from "./pagename.js";
+import { openModal, closeModal } from "./modal.js";
 
 let nav = 0;
 let clicked = null;
@@ -11,7 +12,23 @@ const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const button = document.getElementById('plus-btn')
+const modal = document.querySelector('#newEventModal')
 
+const butt = document.getElementById('plus-btn')
+
+butt.onclick = function (date) {
+  clicked = date;
+  if (eventForDay) {
+    document.getElementById('eventText').innerText = eventForDay.title;
+    deleteEventModal.style.display = 'block';
+  } else {
+    newEventModal.style.display = 'block';
+  }
+
+  backDrop.style.display = 'block';
+
+}
 function openModal(date) {
   clicked = date;
 
@@ -40,7 +57,7 @@ function load() {
 
   const firstDayOfMonth = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  
+
   const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
     weekday: 'long',
     year: 'numeric',
@@ -49,12 +66,12 @@ function load() {
   });
   const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
-   document.getElementById('monthDisplay').innerText = 
-     `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
+  document.getElementById('monthDisplay').innerText =
+    `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
 
   calendar.innerHTML = '';
 
-  for(let i = 1; i <= paddingDays + daysInMonth; i++) {
+  for (let i = 1; i <= paddingDays + daysInMonth; i++) {
     const daySquare = document.createElement('div');
     daySquare.classList.add('day');
 
@@ -80,19 +97,29 @@ function load() {
       daySquare.classList.add('padding');
     }
 
-    calendar.appendChild(daySquare);    
+    calendar.appendChild(daySquare);
   }
 }
 
-function closeModal() {
-  eventTitleInput.classList.remove('error');
+
+window.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    newEventModal.style.display = 'none';
+    deleteEventModal.style.display = 'none';
+    backDrop.style.display = 'none';
+    eventTitleInput.value = '';
+    clicked = null;
+
+    load();
+  }
+})
+backDrop.onclick = function (event) {
+
   newEventModal.style.display = 'none';
   deleteEventModal.style.display = 'none';
   backDrop.style.display = 'none';
   eventTitleInput.value = '';
-  clicked = null;
-  load();
-}
+};
 
 function saveEvent() {
   if (eventTitleInput.value) {
@@ -127,11 +154,13 @@ function initButtons() {
     load();
   });
 
-   document.getElementById('saveButton').addEventListener('click', saveEvent);
-   document.getElementById('cancelButton').addEventListener('click', closeModal);
-   document.getElementById('deleteButton').addEventListener('click', deleteEvent);
-   document.getElementById('closeButton').addEventListener('click', closeModal);
+  document.getElementById('saveButton').addEventListener('click', saveEvent);
+  document.getElementById('cancelButton').addEventListener('click', closeModal);
+  document.getElementById('deleteButton').addEventListener('click', deleteEvent);
+  document.getElementById('closeButton').addEventListener('click', closeModal);
 }
 
 initButtons();
 load();
+
+export { load };
