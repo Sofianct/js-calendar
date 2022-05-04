@@ -93,7 +93,7 @@ function closeModal() {
   clicked = null;
   load();
 }
-let modal = document.querySelector('#newEventModal')
+
 
 window.addEventListener('keydown', function (event) {
   if (event.key === 'Escape') {
