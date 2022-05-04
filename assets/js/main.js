@@ -11,9 +11,9 @@ const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
-function openModal(date) {
-  clicked = date;
+const button = document.getElementById('plus-btn')
+function openModal(button) {
+  clicked = button;
 
   const eventForDay = events.find(e => e.date === clicked);
 
@@ -93,6 +93,26 @@ function closeModal() {
   clicked = null;
   load();
 }
+let modal = document.querySelector('#newEventModal')
+
+window.addEventListener('keydown', function (event) {
+  if (event.key === 'Escape') {
+    newEventModal.style.display = 'none';
+  deleteEventModal.style.display = 'none';
+  backDrop.style.display = 'none';
+  eventTitleInput.value = '';
+  clicked = null;
+  
+  load();
+  }
+})
+backDrop.onclick = function (event) {
+   
+  newEventModal.style.display = 'none';
+  deleteEventModal.style.display = 'none';
+  backDrop.style.display = 'none';
+  eventTitleInput.value = '';
+};
 
 function saveEvent() {
   if (eventTitleInput.value) {
