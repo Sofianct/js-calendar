@@ -1,5 +1,6 @@
 /*  All imports (example) */
 //import { name of BASE FUNCTIONS } from "./pagename.js";
+import { openModal, closeModal } from "./modal.js";
 
 let nav = 0;
 let clicked = null;
@@ -12,11 +13,11 @@ const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const button = document.getElementById('plus-btn')
-function openModal(button) {
-  clicked = button;
+const modal = document.querySelector('#newEventModal')
 
-  const eventForDay = events.find(e => e.date === clicked);
-
+const butt = document.getElementById('plus-btn')
+butt.onclick = function(date){
+  clicked = date;
   if (eventForDay) {
     document.getElementById('eventText').innerText = eventForDay.title;
     deleteEventModal.style.display = 'block';
@@ -25,6 +26,7 @@ function openModal(button) {
   }
 
   backDrop.style.display = 'block';
+
 }
 
 function load() {
@@ -84,25 +86,15 @@ function load() {
   }
 }
 
-function closeModal() {
-  eventTitleInput.classList.remove('error');
-  newEventModal.style.display = 'none';
-  deleteEventModal.style.display = 'none';
-  backDrop.style.display = 'none';
-  eventTitleInput.value = '';
-  clicked = null;
-  load();
-}
-
 
 window.addEventListener('keydown', function (event) {
   if (event.key === 'Escape') {
     newEventModal.style.display = 'none';
-  deleteEventModal.style.display = 'none';
-  backDrop.style.display = 'none';
-  eventTitleInput.value = '';
-  clicked = null;
-  
+    deleteEventModal.style.display = 'none';
+    backDrop.style.display = 'none';
+    eventTitleInput.value = '';
+    clicked = null;
+
   load();
   }
 })
@@ -155,3 +147,5 @@ function initButtons() {
 
 initButtons();
 load();
+
+export { load };
