@@ -11,9 +11,9 @@ const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const button = document.getElementById('plus-btn')
-function openModal(button) {
-  clicked = button;
+const butt = document.getElementById('plus-btn')
+butt.onclick = function(date){
+  clicked = date;
 
   const eventForDay = events.find(e => e.date === clicked);
 
@@ -25,6 +25,7 @@ function openModal(button) {
   }
 
   backDrop.style.display = 'block';
+
 }
 
 function load() {
