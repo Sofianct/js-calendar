@@ -110,11 +110,7 @@ window.addEventListener('keydown', function (event) {
     eventTitleInput.value = '';
     clicked = null;
 
-<<<<<<< HEAD
     load();
-=======
-  load();
->>>>>>> df46e9151e8c814664f9267cb54c7772a2c7d0fd
   }
 })
 backDrop.onclick = function (event) {
