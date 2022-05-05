@@ -11,7 +11,9 @@ const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const butt = document.getElementById('plus-btn')
+const butt = document.getElementById('plus-btn');
+const startDate = document.getElementById('startDate');
+
 //tomar valores del formulario
 
 //Form validations
@@ -130,6 +132,7 @@ window.addEventListener('keydown', function (event) {
     }
 })
 
+
 function saveEvent() {
   if (eventTitleInput.value) {
     eventTitleInput.classList.remove('error');
@@ -137,6 +140,7 @@ function saveEvent() {
     events.push({
       date: clicked,
       title: eventTitleInput.value,
+      startDate: startDate.value //added start date
     });
 
     localStorage.setItem('events', JSON.stringify(events));
