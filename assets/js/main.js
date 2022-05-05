@@ -1,7 +1,3 @@
-/*  All imports (example) */
-//import { name of BASE FUNCTIONS } from "./pagename.js";
-import { openModal, closeModal } from "./modal.js";
-
 let nav = 0;
 let clicked = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
@@ -12,24 +8,10 @@ const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-const button = document.getElementById('plus-btn')
-const modal = document.querySelector('#newEventModal')
-
-const butt = document.getElementById('plus-btn')
+const butt = document.getElementById('plus-btn');
+const startDate = document.getElementById('startDate');
 
 butt.onclick = function (date) {
-  clicked = date;
-  if (eventForDay) {
-    document.getElementById('eventText').innerText = eventForDay.title;
-    deleteEventModal.style.display = 'block';
-  } else {
-    newEventModal.style.display = 'block';
-  }
-
-  backDrop.style.display = 'block';
-
-}
-function openModal(date) {
   clicked = date;
 
   const eventForDay = events.find(e => e.date === clicked);
@@ -41,6 +23,23 @@ function openModal(date) {
     newEventModal.style.display = 'block';
   }
 
+  backDrop.style.display = 'block';
+}
+
+function openModal(date,e) {
+  clicked = date;
+
+  if(e.target.matches('.day')){
+    newEventModal.style.display = 'block';
+  }else{
+    const eventForDay = events.find(e => e.date === clicked);
+
+    if (eventForDay) {
+      document.getElementById('eventText').innerText = `${eventForDay.title} ${eventForDay.date}`;
+  
+      deleteEventModal.style.display = 'block';
+    }  
+  }
   backDrop.style.display = 'block';
 }
 
@@ -79,20 +78,24 @@ function load() {
 
     if (i > paddingDays) {
       daySquare.innerText = i - paddingDays;
-      const eventForDay = events.find(e => e.date === dayString);
+      const eventForDay = events.filter(e => e.date === dayString);
+      
 
       if (i - paddingDays === day && nav === 0) {
         daySquare.id = 'currentDay';
       }
 
       if (eventForDay) {
-        const eventDiv = document.createElement('div');
+        eventForDay.forEach(showEvent =>{
+          const eventDiv = document.createElement('div');
         eventDiv.classList.add('event');
-        eventDiv.innerText = eventForDay.title;
+        eventDiv.innerText = showEvent.title;
         daySquare.appendChild(eventDiv);
+        })
+        
       }
 
-      daySquare.addEventListener('click', () => openModal(dayString));
+      daySquare.addEventListener('click', (e) => openModal(dayString,e))
     } else {
       daySquare.classList.add('padding');
     }
@@ -101,25 +104,36 @@ function load() {
   }
 }
 
-
-window.addEventListener('keydown', function (event) {
-  if (event.key === 'Escape') {
-    newEventModal.style.display = 'none';
-    deleteEventModal.style.display = 'none';
-    backDrop.style.display = 'none';
-    eventTitleInput.value = '';
-    clicked = null;
-
-    load();
-  }
-})
-backDrop.onclick = function (event) {
-
+function closeModal() {
+  eventTitleInput.classList.remove('error');
   newEventModal.style.display = 'none';
   deleteEventModal.style.display = 'none';
   backDrop.style.display = 'none';
   eventTitleInput.value = '';
-};
+  clicked = null;
+  load();
+}
+
+window.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      newEventModal.style.display = 'none';
+      deleteEventModal.style.display = 'none';
+      backDrop.style.display = 'none';
+      eventTitleInput.value = '';
+      clicked = null;
+  
+      load();
+    }
+})
+
+function getEvents(){
+  const event = document.querySelectorAll('.event')
+    Array.from(event).forEach( (eventElement)=>{
+      eventElement.addEventListener('click', (e)=>{
+    console.log(e.target)
+  })
+  })
+}
 
 function saveEvent() {
   if (eventTitleInput.value) {
@@ -128,10 +142,12 @@ function saveEvent() {
     events.push({
       date: clicked,
       title: eventTitleInput.value,
+      startDate: startDate.value //added start date
     });
 
     localStorage.setItem('events', JSON.stringify(events));
     closeModal();
+    
   } else {
     eventTitleInput.classList.add('error');
   }
@@ -162,5 +178,4 @@ function initButtons() {
 
 initButtons();
 load();
-
-export { load };
+getEvents();
