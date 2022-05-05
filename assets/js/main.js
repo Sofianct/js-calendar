@@ -11,8 +11,19 @@ const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const butt = document.getElementById('plus-btn');
+const startDate = document.getElementById('startDate');
 
-function openModal(date) {
+//tomar valores del formulario
+
+//Form validations
+
+function validate(){
+  //(if title === "" set error; if title is longer than 50 char set error)if correct return title
+  //if initialDateValue === "" set error else return initialDateValue
+}
+
+butt.onclick = function (date) {
   clicked = date;
 
   const eventForDay = events.find(e => e.date === clicked);
@@ -24,6 +35,23 @@ function openModal(date) {
     newEventModal.style.display = 'block';
   }
 
+  backDrop.style.display = 'block';
+}
+
+function openModal(date,e) {
+  clicked = date;
+
+  if(e.target.matches('.day')){
+    newEventModal.style.display = 'block';
+  }else{
+    const eventForDay = events.find(e => e.date === clicked);
+
+    if (eventForDay) {
+      document.getElementById('eventText').innerText = `${eventForDay.title} ${eventForDay.date}`;
+  
+      deleteEventModal.style.display = 'block';
+    }  
+  }
   backDrop.style.display = 'block';
 }
 
@@ -40,7 +68,7 @@ function load() {
 
   const firstDayOfMonth = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
-  
+
   const dateString = firstDayOfMonth.toLocaleDateString('en-us', {
     weekday: 'long',
     year: 'numeric',
@@ -49,12 +77,12 @@ function load() {
   });
   const paddingDays = weekdays.indexOf(dateString.split(', ')[0]);
 
-   document.getElementById('monthDisplay').innerText = 
-     `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
+  document.getElementById('monthDisplay').innerText =
+    `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
 
   calendar.innerHTML = '';
 
-  for(let i = 1; i <= paddingDays + daysInMonth; i++) {
+  for (let i = 1; i <= paddingDays + daysInMonth; i++) {
     const daySquare = document.createElement('div');
     daySquare.classList.add('day');
 
@@ -62,27 +90,37 @@ function load() {
 
     if (i > paddingDays) {
       daySquare.innerText = i - paddingDays;
-      const eventForDay = events.find(e => e.date === dayString);
+      const eventForDay = events.filter(e => e.date === dayString);
+      
 
       if (i - paddingDays === day && nav === 0) {
         daySquare.id = 'currentDay';
       }
 
       if (eventForDay) {
-        const eventDiv = document.createElement('div');
+        eventForDay.forEach(showEvent =>{
+          const eventDiv = document.createElement('div');
         eventDiv.classList.add('event');
-        eventDiv.innerText = eventForDay.title;
+        eventDiv.innerText = showEvent.title;
         daySquare.appendChild(eventDiv);
+        })
+        
       }
 
-      daySquare.addEventListener('click', () => openModal(dayString));
+      daySquare.addEventListener('click', (e) => openModal(dayString,e))
     } else {
       daySquare.classList.add('padding');
     }
 
-    calendar.appendChild(daySquare);    
+    calendar.appendChild(daySquare);
   }
 }
+
+function testeo(eventForDay){
+  console.log(eventForDay)
+}
+
+
 
 function closeModal() {
   eventTitleInput.classList.remove('error');
@@ -94,6 +132,30 @@ function closeModal() {
   load();
 }
 
+window.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+      newEventModal.style.display = 'none';
+      deleteEventModal.style.display = 'none';
+      backDrop.style.display = 'none';
+      eventTitleInput.value = '';
+      clicked = null;
+  
+      load();
+    }
+})
+
+function getEvents(){
+  const event = document.querySelectorAll('.event')
+  
+  Array.from(event).forEach( (eventElement)=>{
+    eventElement.addEventListener('click', (e)=>{
+  //  openModal(e.target.parentElement.text)
+  console.log(e.target)
+})
+  })
+}
+
+
 function saveEvent() {
   if (eventTitleInput.value) {
     eventTitleInput.classList.remove('error');
@@ -101,14 +163,18 @@ function saveEvent() {
     events.push({
       date: clicked,
       title: eventTitleInput.value,
+      startDate: startDate.value //added start date
     });
 
     localStorage.setItem('events', JSON.stringify(events));
     closeModal();
+    
   } else {
     eventTitleInput.classList.add('error');
   }
 }
+
+
 
 function deleteEvent() {
   events = events.filter(e => e.date !== clicked);
@@ -127,11 +193,12 @@ function initButtons() {
     load();
   });
 
-   document.getElementById('saveButton').addEventListener('click', saveEvent);
-   document.getElementById('cancelButton').addEventListener('click', closeModal);
-   document.getElementById('deleteButton').addEventListener('click', deleteEvent);
-   document.getElementById('closeButton').addEventListener('click', closeModal);
+  document.getElementById('saveButton').addEventListener('click', saveEvent);
+  document.getElementById('cancelButton').addEventListener('click', closeModal);
+  document.getElementById('deleteButton').addEventListener('click', deleteEvent);
+  document.getElementById('closeButton').addEventListener('click', closeModal);
 }
 
 initButtons();
 load();
+getEvents();

@@ -8,12 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://kit.fontawesome.com/0121341235.js" crossorigin="anonymous"
     ></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      media="screen"
-      href="./assets/css/styles.css"
-    />
+    <link rel="stylesheet"type="text/css"media="screen"href="./assets/css/styles.css"/>
     <script src="./assets/js/main.js" type="module" defer async></script>
   </head>
   <body>
@@ -29,9 +24,8 @@
                 <div class="header__buttons">
                     <button class="btn prev-btn" id="backButton"><i class="fa-solid fa-xl fa-chevron-left"></i></button>
                     <h2 class="header__date-title" id="monthDisplay"></h2>
-                     <button class="btn plus-btn" id="plus-btn"><i class="fa-solid fa-xl fa-circle-plus"></i></button>
-                     <button class="btn next-btn" id="nextButton"><i class="fa-solid fa-xl fa-chevron-right"></i></button>
-                   
+                    <button class="btn plus-btn" id="plus-btn"><i class="fa-solid fa-xl fa-circle-plus"></i></button>
+                    <button class="btn next-btn" id="nextButton"><i class="fa-solid fa-xl fa-chevron-right"></i></button>
                 </div>
             </header>
             <section class="calendar">
@@ -45,56 +39,57 @@
                     <div>Su</div>
                 </div>
                 <div id="calendar" class="days">
-                    <div class="day">1</div>
-                    <div class="day">2</div>
-                    <div class="day">3</div>
-                    <div class="day">4</div>
-                    <div class="day">5</div>
-                    <div class="day">6</div>
-                    <div class="day">7</div>
-                    <div class="day">8</div>
-                    <div class="day">9</div>
-                    <div class="day">10</div>
-                    <div class="day">11</div>
-                    <div class="day">12</div>
-                    <div class="day">13</div>
-                    <div class="day">14</div>
-                    <div class="day">15</div>
-                    <div class="day">16</div>
-                    <div class="day">17</div>
-                    <div class="day">18</div>
-                    <div class="day">19</div>
-                    <div class="day">20</div>
-                    <div class="day">21</div>
-                    <div class="day">22</div>
-                    <div class="day">23</div>
-                    <div class="day">24</div>
-                    <div class="day">25</div>
-                    <div class="day">26</div>
-                    <div class="day">27</div>
-                    <div class="day">28</div>
-                    <div class="day">29</div>
-                    <div class="day">30</div>
                 </div>
             </section>
         </article>
         <div id="newEventModal">
+          <form id="form">
             <h2>New Event</h2>
-      
-            <input id="eventTitleInput" placeholder="Event Title"/>
-              <input type="datetime-local" id="birthdaytime" name="birthdaytime">
-              <input type="submit">
+            <input id="eventTitleInput" placeholder="Event Title" maxlength="60"/>
+            
+            <label for="from">From</label>
+            <input id="startDate" type="datetime-local">
             <br>
+            <label for="endDate">End Date</label>
+            <input type="checkbox" id="">
+            <br>
+            <label for="to">To</label>
+            <input type="datetime-local">
+            <br>
+            <label for="reminder">Reminder</label>
+            <input type="checkbox" id="reminder">
+            <select id="reminder">
+              <option value="5">5 minutes</option>
+              <option value="10">10 minutes</option>
+              <option value="15">15 minutes</option>
+              <option value="30">30 minutes</option>
+              <option value="1">1 hour</option>
+            </select>
+            <br>
+            <label for="description">Description</label>
+            <input type="text" id="description" maxlength="500">
+
+            <label for="eventType">Event type</label>
+            <select id="eventType">
+              <option value="meeting">Meeting</option>
+              <option value="study">Study</option>
+              <option value="personal">Personal</option>
+            </select>
+
             <button id="saveButton">Save</button>
             <button id="cancelButton">Cancel</button>
-          </div>
-          <div id="deleteEventModal">
-            <h2>Event</h2>
-            <p id="eventText"></p>
-            <button id="deleteButton">Delete</button>
-            <button id="closeButton">Close</button>
-          </div>
-          <div id="modalBackDrop"></div>
+            </div>
+            <div id="deleteEventModal">
+              <h2>Event</h2>
+              <p id="eventText"></p>
+              <button id="deleteButton">Delete</button>
+              <button id="closeButton">Close</button>
+            </div>
+            <div id="modalBackDrop"></div>
+          </form>
+            
+          
+
     </main>
   </body>
 </html>

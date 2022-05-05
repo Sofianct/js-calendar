@@ -55,7 +55,7 @@ button{
 }
 .calendar__weekdays div{
     width: 100px;
-    padding: 10px;
+    padding: 20px;
 }
 .days{
     display: grid;
@@ -65,16 +65,16 @@ button{
     grid-row-gap: 5px;
 }
 .day{
-    width: 5.25rem;
+    width: 4.25rem;
     padding: 0.625rem;
-    height: 6.25rem;
+    height: 5.25rem;
+    font-size: 1.2rem;
     cursor: pointer;
     box-sizing: border-box;
     margin: 0.31rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    border: rgb(82, 82, 82) 1px solid;
 }
 /*---------------------------------------*/
 .header__buttons{
@@ -107,7 +107,7 @@ button{
     display: none;
     z-index: 20;
     padding: 25px;
-    background-color: #e8f4fa;
+    background-color: var(--back-color)!important;
     box-shadow: 0px 0px 3px black;
     border-radius: 5px;
     width: 350px;
@@ -115,6 +115,9 @@ button{
     left: calc(50% - 175px);
     position: absolute;
     font-family: sans-serif;
+}
+input{
+    background-color: var(--modal-color);
 }
 #eventTitleInput {
     padding: 10px;
