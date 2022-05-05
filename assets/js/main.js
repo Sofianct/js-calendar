@@ -1,6 +1,3 @@
-/*  All imports (example) */
-//import { name of BASE FUNCTIONS } from "./pagename.js";
-
 let nav = 0;
 let clicked = null;
 let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
@@ -13,15 +10,6 @@ const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 const butt = document.getElementById('plus-btn');
 const startDate = document.getElementById('startDate');
-
-//tomar valores del formulario
-
-//Form validations
-
-function validate(){
-  //(if title === "" set error; if title is longer than 50 char set error)if correct return title
-  //if initialDateValue === "" set error else return initialDateValue
-}
 
 butt.onclick = function (date) {
   clicked = date;
@@ -116,12 +104,6 @@ function load() {
   }
 }
 
-function testeo(eventForDay){
-  console.log(eventForDay)
-}
-
-
-
 function closeModal() {
   eventTitleInput.classList.remove('error');
   newEventModal.style.display = 'none';
@@ -146,15 +128,12 @@ window.addEventListener('keydown', function (event) {
 
 function getEvents(){
   const event = document.querySelectorAll('.event')
-  
-  Array.from(event).forEach( (eventElement)=>{
-    eventElement.addEventListener('click', (e)=>{
-  //  openModal(e.target.parentElement.text)
-  console.log(e.target)
-})
+    Array.from(event).forEach( (eventElement)=>{
+      eventElement.addEventListener('click', (e)=>{
+    console.log(e.target)
+  })
   })
 }
-
 
 function saveEvent() {
   if (eventTitleInput.value) {
@@ -173,8 +152,6 @@ function saveEvent() {
     eventTitleInput.classList.add('error');
   }
 }
-
-
 
 function deleteEvent() {
   events = events.filter(e => e.date !== clicked);
