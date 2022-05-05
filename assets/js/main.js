@@ -12,13 +12,9 @@ const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-<<<<<<< HEAD
-function openModal(date) {
-=======
 const butt = document.getElementById('plus-btn')
 
 butt.onclick = function (date) {
->>>>>>> 5995ff75ec7f9860ece15e425add00bc1e3d6554
   clicked = date;
 
   const eventForDay = events.find(e => e.date === clicked);
