@@ -11,6 +11,7 @@ const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Frida
 const butt = document.getElementById('plus-btn');
 const startDate = document.getElementById('startDate');
 
+
 butt.onclick = function (date) {
   clicked = date;
 
@@ -22,30 +23,25 @@ butt.onclick = function (date) {
   } else {
     newEventModal.style.display = 'block';
   }
-
   backDrop.style.display = 'block';
 }
 
 function openModal(date,e) {
   clicked = date;
-
   if(e.target.matches('.day')){
     newEventModal.style.display = 'block';
   }else{
     const eventForDay = events.find(e => e.date === clicked);
-
     if (eventForDay) {
       document.getElementById('eventText').innerText = `${eventForDay.title} ${eventForDay.date}`;
-  
       deleteEventModal.style.display = 'block';
-    }  
+    }
   }
   backDrop.style.display = 'block';
 }
 
 function load() {
   const dt = new Date();
-
   if (nav !== 0) {
     dt.setMonth(new Date().getMonth() + nav);
   }
@@ -67,8 +63,8 @@ function load() {
 
   document.getElementById('monthDisplay').innerText =
     `${dt.toLocaleDateString('en-us', { month: 'long' })} ${year}`;
-
   calendar.innerHTML = '';
+
 
   for (let i = 1; i <= paddingDays + daysInMonth; i++) {
     const daySquare = document.createElement('div');
@@ -79,12 +75,9 @@ function load() {
     if (i > paddingDays) {
       daySquare.innerText = i - paddingDays;
       const eventForDay = events.filter(e => e.date === dayString);
-      
-
       if (i - paddingDays === day && nav === 0) {
         daySquare.id = 'currentDay';
       }
-
       if (eventForDay) {
         eventForDay.forEach(showEvent =>{
           const eventDiv = document.createElement('div');
@@ -92,17 +85,19 @@ function load() {
         eventDiv.innerText = showEvent.title;
         daySquare.appendChild(eventDiv);
         })
-        
       }
-
       daySquare.addEventListener('click', (e) => openModal(dayString,e))
     } else {
       daySquare.classList.add('padding');
     }
-
     calendar.appendChild(daySquare);
   }
 }
+
+
+
+
+
 
 function closeModal() {
   eventTitleInput.classList.remove('error');
@@ -138,13 +133,12 @@ function getEvents(){
 function saveEvent() {
   if (eventTitleInput.value) {
     eventTitleInput.classList.remove('error');
-
     events.push({
       date: clicked,
       title: eventTitleInput.value,
       startDate: startDate.value //added start date
     });
-
+    
     localStorage.setItem('events', JSON.stringify(events));
     closeModal();
     
