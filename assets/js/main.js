@@ -38,18 +38,20 @@ butt.onclick = function (date) {
   backDrop.style.display = 'block';
 }
 
-function openModal(date) {
+function openModal(date,e) {
   clicked = date;
 
-  const eventForDay = events.find(e => e.date === clicked);
-
-  if (eventForDay) {
-    document.getElementById('eventText').innerText = eventForDay.title;
-    deleteEventModal.style.display = 'block';
-  } else {
+  if(e.target.matches('.day')){
     newEventModal.style.display = 'block';
-  }
+  }else{
+    const eventForDay = events.find(e => e.date === clicked);
 
+    if (eventForDay) {
+      document.getElementById('eventText').innerText = `${eventForDay.title} ${eventForDay.date}`;
+  
+      deleteEventModal.style.display = 'block';
+    }  
+  }
   backDrop.style.display = 'block';
 }
 
@@ -88,20 +90,24 @@ function load() {
 
     if (i > paddingDays) {
       daySquare.innerText = i - paddingDays;
-      const eventForDay = events.find(e => e.date === dayString);
+      const eventForDay = events.filter(e => e.date === dayString);
+      
 
       if (i - paddingDays === day && nav === 0) {
         daySquare.id = 'currentDay';
       }
 
       if (eventForDay) {
-        const eventDiv = document.createElement('div');
+        eventForDay.forEach(showEvent =>{
+          const eventDiv = document.createElement('div');
         eventDiv.classList.add('event');
-        eventDiv.innerText = eventForDay.title;
+        eventDiv.innerText = showEvent.title;
         daySquare.appendChild(eventDiv);
+        })
+        
       }
 
-      daySquare.addEventListener('click', () => openModal(dayString));
+      daySquare.addEventListener('click', (e) => openModal(dayString,e))
     } else {
       daySquare.classList.add('padding');
     }
@@ -109,6 +115,12 @@ function load() {
     calendar.appendChild(daySquare);
   }
 }
+
+function testeo(eventForDay){
+  console.log(eventForDay)
+}
+
+
 
 function closeModal() {
   eventTitleInput.classList.remove('error');
@@ -132,6 +144,17 @@ window.addEventListener('keydown', function (event) {
     }
 })
 
+function getEvents(){
+  const event = document.querySelectorAll('.event')
+  
+  Array.from(event).forEach( (eventElement)=>{
+    eventElement.addEventListener('click', (e)=>{
+  //  openModal(e.target.parentElement.text)
+  console.log(e.target)
+})
+  })
+}
+
 
 function saveEvent() {
   if (eventTitleInput.value) {
@@ -145,10 +168,13 @@ function saveEvent() {
 
     localStorage.setItem('events', JSON.stringify(events));
     closeModal();
+    
   } else {
     eventTitleInput.classList.add('error');
   }
 }
+
+
 
 function deleteEvent() {
   events = events.filter(e => e.date !== clicked);
@@ -175,3 +201,4 @@ function initButtons() {
 
 initButtons();
 load();
+getEvents();
