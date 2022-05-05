@@ -79,6 +79,7 @@
             </section>
         </article>
         <div id="newEventModal">
+          <form id="form">
             <h2>New Event</h2>
             <input id="eventTitleInput" placeholder="Event Title" maxlength="60"/>
             
@@ -110,19 +111,22 @@
               <option value="study">Study</option>
               <option value="personal">Personal</option>
             </select>
-
+            <br><br>
             <input id="submit" type="submit">
+            <br><br>
 
             <button id="saveButton">Save</button>
             <button id="cancelButton">Cancel</button>
-          </div>
-          <div id="deleteEventModal">
-            <h2>Event</h2>
-            <p id="eventText"></p>
-            <button id="deleteButton">Delete</button>
-            <button id="closeButton">Close</button>
-          </div>
-          <div id="modalBackDrop"></div>
+            </div>
+            <div id="deleteEventModal">
+              <h2>Event</h2>
+              <p id="eventText"></p>
+              <button id="deleteButton">Delete</button>
+              <button id="closeButton">Close</button>
+            </div>
+            <div id="modalBackDrop"></div>
+          </form>
+            
           
 
     </main>

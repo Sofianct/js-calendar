@@ -11,8 +11,15 @@ const deleteEventModal = document.getElementById('deleteEventModal');
 const backDrop = document.getElementById('modalBackDrop');
 const eventTitleInput = document.getElementById('eventTitleInput');
 const weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-
 const butt = document.getElementById('plus-btn')
+//tomar valores del formulario
+
+//Form validations
+
+function validate(){
+  //(if title === "" set error; if title is longer than 50 char set error)if correct return title
+  //if initialDateValue === "" set error else return initialDateValue
+}
 
 butt.onclick = function (date) {
   clicked = date;
@@ -102,14 +109,13 @@ function load() {
 }
 
 function closeModal() {
-    eventTitleInput.classList.remove('error');
-    backDrop.onclick = function (event) {
-    newEventModal.style.display = 'none';
-    deleteEventModal.style.display = 'none';
-    backDrop.style.display = 'none';
-    eventTitleInput.value = '';
-    clicked = null;
-    load();
+  eventTitleInput.classList.remove('error');
+  newEventModal.style.display = 'none';
+  deleteEventModal.style.display = 'none';
+  backDrop.style.display = 'none';
+  eventTitleInput.value = '';
+  clicked = null;
+  load();
 }
 
 window.addEventListener('keydown', function (event) {
@@ -122,7 +128,7 @@ window.addEventListener('keydown', function (event) {
   
       load();
     }
-})}
+})
 
 function saveEvent() {
   if (eventTitleInput.value) {
