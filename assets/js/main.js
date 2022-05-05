@@ -28,6 +28,7 @@ butt.onclick = function (date) {
 
   backDrop.style.display = 'block';
 }
+
 function openModal(date) {
   clicked = date;
 
@@ -121,7 +122,7 @@ window.addEventListener('keydown', function (event) {
   
       load();
     }
-})
+})}
 
 function saveEvent() {
   if (eventTitleInput.value) {

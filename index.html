@@ -80,55 +80,41 @@
         </article>
         <div id="newEventModal">
             <h2>New Event</h2>
-            <input id="eventTitleInput" placeholder="Event Title"/>
-            <form action="/action_page.php">
-              <input type="datetime-local" id="birthdaytime" name="birthdaytime">
-              <input type="submit">
-            </form>
+            <input id="eventTitleInput" placeholder="Event Title" maxlength="60"/>
+            
+            <label for="from">From</label>
+            <input type="datetime-local">
             <br>
+            <label for="endDate">End Date</label>
+            <input type="checkbox" id="">
+            <br>
+            <label for="to">To</label>
+            <input type="datetime-local">
+            <br>
+            <label for="reminder">Reminder</label>
+            <input type="checkbox" id="reminder">
+            <select id="reminder">
+              <option value="5">5 minutes</option>
+              <option value="10">10 minutes</option>
+              <option value="15">15 minutes</option>
+              <option value="30">30 minutes</option>
+              <option value="1">1 hour</option>
+            </select>
+            <br>
+            <label for="description">Description</label>
+            <input type="text" id="description" maxlength="500">
+
+            <label for="eventType">Event type</label>
+            <select id="eventType">
+              <option value="meeting">Meeting</option>
+              <option value="study">Study</option>
+              <option value="personal">Personal</option>
+            </select>
+
+            <input id="submit" type="submit">
+
             <button id="saveButton">Save</button>
             <button id="cancelButton">Cancel</button>
-
-              <section class="form_page">
-                <form action="submit" id="form">
-                  <div class="step step-page1">
-                    <h1>Profile</h1>
-                    <hr>
-                    <div class="form-group">
-                      <label for="username">Username</label>
-                      <input type="text" name="username" id="username">
-                      <div class="validation-info">
-                        <p></p>
-                        <i></i>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="email">Email</label>
-                      <input type="email" name="email" id="email">
-                      <div class="validation-info">
-                        <p></p>
-                        <i></i>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="password">Password</label>
-                      <input type="password" name="password" id="password">
-                      <div class="validation-info">
-                        <p></p>
-                        <i></i>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="confirm-password">Confirm password</label>
-                      <input type="password" name="confirm-password" id="confirm-password">
-                      <div class="validation-info">
-                        <p></p>
-                        <i></i>
-                      </div>
-                    </div>
-                  </div>
-            </section>
-            
           </div>
           <div id="deleteEventModal">
             <h2>Event</h2>
